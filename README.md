@@ -12,26 +12,7 @@ This lab demonstrates a full SDN monitoring pipeline. A custom Python script (`s
 
 ## 🏗️ Architecture
 
-```
- ┌─────────────┐     OpenFlow13      ┌──────────────────────┐
- │   Mininet   │ ──────────────────► │  OpenDaylight (ODL)  │
- │  h1─s1─s2  │     port 6653        │  Karaf 0.23.1        │
- │      └─s3─h3│                     │  RESTCONF API :8181  │
- └─────────────┘                     └──────────┬───────────┘
-                                                │ REST API
-                                                ▼
-                                        ┌──────────────┐
-                                        │    sc.py     │
-                                        │  (Python 3)  │
-                                        └──────┬───────┘
-                                               │ Write points
-                                               ▼
-                                        ┌──────────────┐      ┌─────────────┐
-                                        │   InfluxDB   │ ───► │   Grafana   │
-                                        │  :8086       │      │   :3000     │
-                                        │  sdn_monitor │      │  Dashboard  │
-                                        └──────────────┘      └─────────────┘
-```
+![Architecture](screenshots/sdn-architecture.svg)
 
 ---
 
@@ -78,11 +59,8 @@ This lab demonstrates a full SDN monitoring pipeline. A custom Python script (`s
 
 ## 🖥️ Mininet Topology
 
-```
-   h1            h2            h3
-   |              |              |
-  [s1] ────── [s2] ────── [s3]
-```
+![Mininet Topology](screenshots/mininet-topology.svg)
+
 
 | Node | Type       | Connected to |
 | ---- | ---------- | ------------ |
