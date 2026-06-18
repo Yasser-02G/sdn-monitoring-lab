@@ -1,0 +1,113 @@
+<svg viewBox="0 0 860 520" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="860" height="520" fill="#f8fafc" rx="14"/>
+
+  <!-- Title -->
+  <text x="430" y="40" text-anchor="middle" fill="#0f172a" font-size="17" font-weight="700">SDN Monitoring Pipeline — Architecture</text>
+  <line x1="60" y1="52" x2="800" y2="52" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- ════ MININET BOX ════ -->
+  <rect x="40" y="80" width="170" height="130" rx="12" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+  <rect x="40" y="80" width="170" height="34" rx="12" fill="#22c55e"/>
+  <rect x="40" y="100" width="170" height="14" fill="#22c55e"/>
+  <text x="125" y="102" text-anchor="middle" fill="white" font-size="12" font-weight="700">🖧  Mininet</text>
+  <text x="125" y="132" text-anchor="middle" fill="#166534" font-size="11" font-weight="600">3 Switches (OVS)</text>
+  <text x="125" y="149" text-anchor="middle" fill="#166534" font-size="10">s1 — s2 — s3</text>
+  <text x="125" y="166" text-anchor="middle" fill="#166534" font-size="11" font-weight="600">3 Hosts</text>
+  <text x="125" y="183" text-anchor="middle" fill="#166534" font-size="10">h1  h2  h3</text>
+  <text x="125" y="200" text-anchor="middle" fill="#15803d" font-size="9">Ubuntu 20.04 / VirtualBox</text>
+
+  <!-- Arrow Mininet → ODL -->
+  <line x1="210" y1="145" x2="268" y2="145" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="239" y="135" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">OpenFlow 1.3</text>
+  <text x="239" y="158" text-anchor="middle" fill="#94a3b8" font-size="8">port 6653</text>
+
+  <!-- ════ ODL BOX ════ -->
+  <rect x="270" y="80" width="200" height="130" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+  <rect x="270" y="80" width="200" height="34" rx="12" fill="#3b82f6"/>
+  <rect x="270" y="100" width="200" height="14" fill="#3b82f6"/>
+  <text x="370" y="102" text-anchor="middle" fill="white" font-size="12" font-weight="700">⚙  OpenDaylight (ODL)</text>
+  <text x="370" y="132" text-anchor="middle" fill="#1e40af" font-size="11" font-weight="600">Karaf 0.23.1</text>
+  <text x="370" y="149" text-anchor="middle" fill="#1e40af" font-size="10">RESTCONF API  :8181</text>
+  <text x="370" y="166" text-anchor="middle" fill="#1e40af" font-size="10">odl-openflowplugin</text>
+  <text x="370" y="183" text-anchor="middle" fill="#1e40af" font-size="10">odl-restconf  |  odl-mdsal</text>
+  <text x="370" y="200" text-anchor="middle" fill="#2563eb" font-size="9">412 bundles active</text>
+
+  <!-- Arrow ODL → sc.py (vertical) -->
+  <line x1="370" y1="210" x2="370" y2="268" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="385" y="244" fill="#475569" font-size="9" font-weight="600">REST API</text>
+
+  <!-- ════ sc.py BOX ════ -->
+  <rect x="270" y="270" width="200" height="110" rx="12" fill="#fefce8" stroke="#eab308" stroke-width="2"/>
+  <rect x="270" y="270" width="200" height="34" rx="12" fill="#eab308"/>
+  <rect x="270" y="290" width="200" height="14" fill="#eab308"/>
+  <text x="370" y="292" text-anchor="middle" fill="white" font-size="12" font-weight="700">🐍  sc.py  (Python 3)</text>
+  <text x="370" y="322" text-anchor="middle" fill="#713f12" font-size="10">Polls ODL every 10s</text>
+  <text x="370" y="339" text-anchor="middle" fill="#713f12" font-size="10">Topology + Port stats</text>
+  <text x="370" y="356" text-anchor="middle" fill="#713f12" font-size="10">Writes to InfluxDB</text>
+  <text x="370" y="372" text-anchor="middle" fill="#92400e" font-size="9">topology_links  |  network_data</text>
+
+  <!-- Arrow sc.py → InfluxDB (vertical) -->
+  <line x1="370" y1="380" x2="370" y2="428" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="385" y="410" fill="#475569" font-size="9" font-weight="600">Write points</text>
+
+  <!-- ════ INFLUXDB BOX ════ -->
+  <rect x="210" y="430" width="170" height="70" rx="12" fill="#fff1f2" stroke="#f43f5e" stroke-width="2"/>
+  <rect x="210" y="430" width="170" height="30" rx="12" fill="#f43f5e"/>
+  <rect x="210" y="448" width="170" height="12" fill="#f43f5e"/>
+  <text x="295" y="450" text-anchor="middle" fill="white" font-size="12" font-weight="700">🗄  InfluxDB  1.6.4</text>
+  <text x="295" y="474" text-anchor="middle" fill="#881337" font-size="10">Database: sdn_monitor  |  :8086</text>
+  <text x="295" y="490" text-anchor="middle" fill="#881337" font-size="9">port_stats  •  topology_links</text>
+
+  <!-- Arrow InfluxDB → Grafana -->
+  <line x1="380" y1="465" x2="458" y2="465" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="419" y="457" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">Query</text>
+
+  <!-- ════ GRAFANA BOX ════ -->
+  <rect x="460" y="430" width="170" height="70" rx="12" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <rect x="460" y="430" width="170" height="30" rx="12" fill="#f97316"/>
+  <rect x="460" y="448" width="170" height="12" fill="#f97316"/>
+  <text x="545" y="450" text-anchor="middle" fill="white" font-size="12" font-weight="700">📊  Grafana</text>
+  <text x="545" y="474" text-anchor="middle" fill="#7c2d12" font-size="10">Dashboard: Topo  |  :3000</text>
+  <text x="545" y="490" text-anchor="middle" fill="#7c2d12" font-size="9">Nœuds  •  Trafic  •  Link_Status</text>
+
+  <!-- ════ LEGEND BOXES RIGHT ════ -->
+  <rect x="660" y="80" width="175" height="340" rx="10" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="747" y="102" text-anchor="middle" fill="#334155" font-size="11" font-weight="700">📋  Data Flow</text>
+  <line x1="672" y1="108" x2="823" y2="108" stroke="#cbd5e1" stroke-width="1"/>
+
+  <text x="672" y="128" fill="#475569" font-size="10" font-weight="600">① Mininet starts topology</text>
+  <text x="672" y="144" fill="#64748b" font-size="9">   3 OVS switches + 3 hosts</text>
+
+  <text x="672" y="164" fill="#475569" font-size="10" font-weight="600">② OpenFlow13 handshake</text>
+  <text x="672" y="180" fill="#64748b" font-size="9">   Switches connect to ODL</text>
+
+  <text x="672" y="200" fill="#475569" font-size="10" font-weight="600">③ ODL manages flows</text>
+  <text x="672" y="216" fill="#64748b" font-size="9">   table-miss-enforcer active</text>
+
+  <text x="672" y="236" fill="#475569" font-size="10" font-weight="600">④ sc.py polls every 10s</text>
+  <text x="672" y="252" fill="#64748b" font-size="9">   GET /rests/data/nodes</text>
+  <text x="672" y="266" fill="#64748b" font-size="9">   GET /network-topology</text>
+
+  <text x="672" y="286" fill="#475569" font-size="10" font-weight="600">⑤ Data → InfluxDB</text>
+  <text x="672" y="302" fill="#64748b" font-size="9">   port_stats, topology_links</text>
+
+  <text x="672" y="322" fill="#475569" font-size="10" font-weight="600">⑥ Grafana visualizes</text>
+  <text x="672" y="338" fill="#64748b" font-size="9">   Real-time packets/s graph</text>
+  <text x="672" y="352" fill="#64748b" font-size="9">   Node count + Link status</text>
+
+  <rect x="672" y="368" width="140" height="40" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="1"/>
+  <text x="742" y="385" text-anchor="middle" fill="#0369a1" font-size="9" font-weight="700">pingall result:</text>
+  <text x="742" y="400" text-anchor="middle" fill="#0369a1" font-size="9">0% dropped (6/6 received)</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <!-- Footer -->
+  <text x="430" y="510" text-anchor="middle" fill="#94a3b8" font-size="9">SDN Monitoring Lab — OpenDaylight 0.23.1 + Mininet + InfluxDB + Grafana — Ubuntu 20.04</text>
+</svg>
