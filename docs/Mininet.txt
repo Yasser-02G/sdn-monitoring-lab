@@ -1,0 +1,6 @@
+# sudo apt update
+# sudo apt install mininet
+# sudo mn -c
+# sudo ovs-vsctl set bridge s1 protocols=OpenFlow13
+# sudo ovs-ofctl add-flow s1 priority=100,actions=NORMAL -O OpenFlow13
+# sudo service openvswitch-switch start

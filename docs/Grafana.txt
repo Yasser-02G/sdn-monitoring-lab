@@ -1,0 +1,7 @@
+1.
+# python3 sc.py (Start sc.py)
+
+2.
+SELECT non_negative_derivative(last("received_packets"), 1s) FROM "port_stats" WHERE $timeFilter GROUP BY time($__interval) fill(0)
+noeuds : SELECT last("total_nodes") FROM "network_data" -> stat
+data  : SELECT non_negative_derivative(mean("received_packets"), 10s) FROM "network_data" WHERE $timeFilter GROUP BY time($__interval) fill(0)

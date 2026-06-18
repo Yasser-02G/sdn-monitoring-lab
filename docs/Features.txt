@@ -1,0 +1,5 @@
+feature:list
+feature:install odl-openflowplugin-flow-services
+feature:install odl-openflowplugin-app-table-miss-enforcer
+feature:install odl-restconf 
+feature:install odl-mdsal-models 

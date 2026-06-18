@@ -1,0 +1,7 @@
+# sudo systemctl start influxdb
+# influx
+> CREATE DATABASE network_stats
+> USE network_stats
+> SHOW MEASUREMENTS
+> SELECT * FROM "network_data" ORDER BY time DESC LIMIT 10
+

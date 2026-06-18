@@ -1,0 +1,8 @@
+# sudo su
+# apt-get update
+# apt-get install openjdk-21-jre openjdk-21-jdk unzip
+# wget https://nexus.opendaylight.org/content/repositories/opendaylight.release/org/opendaylight/integration/karaf/0.23.1/karaf-0.23.1.zip
+# unzip karaf-0.23.1.zip
+# cd /karaf-0.23.1/bin/
+# export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
+# ./karaf
