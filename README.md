@@ -12,7 +12,7 @@ This lab demonstrates a full SDN monitoring pipeline. A custom Python script (`s
 
 ## 🏗️ Architecture
 
-![Architecture](screenshots/sdn-architecture.svg)
+![Architecture](Architecture.png)
 
 ---
 
@@ -59,7 +59,7 @@ This lab demonstrates a full SDN monitoring pipeline. A custom Python script (`s
 
 ## 🖥️ Mininet Topology
 
-![Mininet Topology](screenshots/mininet-topology.svg)
+![Mininet Topology](Topo.png)
 
 
 | Node | Type       | Connected to |
